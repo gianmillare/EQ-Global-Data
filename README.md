@@ -9,6 +9,8 @@ The sole purpose of this project was to hone my skills in data visualization wit
 
 This project showcases the development of a GeoMapping tool. The tool (Plotly) shows all earthquakes that registered a magnitude of 1.0+ within the past 30 days (currently: February-March, 2020). 
 
+In order to use this tool, download all the files.
+
 ------------------------------------------------------------------------------------------------------------------------------
 
 ### Below is a preview of the completed GeoMap
