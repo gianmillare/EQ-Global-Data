@@ -62,35 +62,35 @@ filename1 = 'data/eq_global_30_days.json'
 
 
 
-# # Part 5: World Map
-# with open(filename) as f:
-#     all_eq_data = json.load(f)
-#
-# all_eq_dicts = all_eq_data['features']
-#
-# mags, lons, lats = [], [], []
-# for eq_dicts in all_eq_dicts:
-#     mag = eq_dicts['properties']['mag']
-#     lon = eq_dicts['geometry']['coordinates'][0]
-#     lat = eq_dicts['geometry']['coordinates'][1]
-#     mags.append(mag)
-#     lons.append(lon)
-#     lats.append(lat)
-#
-# # Map the earthquakes
-# data = [Scattergeo(lon=lons, lat=lats)] # The data we use in the visualization is called by Scattergeo object
-# my_layout = Layout(title='Global Earthquakes') # This is where you can customize the layout
-#
-# fig = {'data': data, 'layout': my_layout} # we 'call' the entire layout by using the dictionary fig
-# offline.plot(fig, filename='plots/global_earthquakes.html') # this is where we 'execute' the entire layout and plot the map
-#
-
-
-
-# Part 6: Reformat 30 day Global data for eq_global_data.py
-with open(filename1) as f:
+# Part 5: World Map
+with open(filename) as f:
     all_eq_data = json.load(f)
 
-readable_file = 'data/reformat_30_days.json'
-with open(readable_file, 'w') as f:
-    json.dump(all_eq_data, f, indent=4)
+all_eq_dicts = all_eq_data['features']
+
+mags, lons, lats = [], [], []
+for eq_dicts in all_eq_dicts:
+    mag = eq_dicts['properties']['mag']
+    lon = eq_dicts['geometry']['coordinates'][0]
+    lat = eq_dicts['geometry']['coordinates'][1]
+    mags.append(mag)
+    lons.append(lon)
+    lats.append(lat)
+
+# Map the earthquakes
+data = [Scattergeo(lon=lons, lat=lats)] # The data we use in the visualization is called by Scattergeo object
+my_layout = Layout(title='Global Earthquakes') # This is where you can customize the layout
+
+fig = {'data': data, 'layout': my_layout} # we 'call' the entire layout by using the dictionary fig
+offline.plot(fig, filename='plots/global_earthquakes.html') # this is where we 'execute' the entire layout and plot the map
+
+
+
+
+# # Part 6: Reformat 30 day Global data for eq_global_data.py
+# with open(filename1) as f:
+#     all_eq_data = json.load(f)
+#
+# readable_file = 'data/reformat_30_days.json'
+# with open(readable_file, 'w') as f:
+#     json.dump(all_eq_data, f, indent=4)
