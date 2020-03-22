@@ -17,12 +17,6 @@ This project showcases the development of a GeoMapping tool. The tool (Plotly) s
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-### Below is a preview of the code
-
-![](preview/code.png)
-
-------------------------------------------------------------------------------------------------------------------------------
-
 ### Part 1: Standard GeoMapping feature, plotting areas on a map that experience some form of earthquake 1.0+
 
 ![](preview/pt1.png)
