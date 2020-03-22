@@ -24,15 +24,35 @@ filename = 'data/eq_1_day.json'
 
 
 
-# Part 3: Extracting Magnitudes
+# # Part 3: Extracting Magnitudes
+# with open(filename) as f:
+#     all_eq_data = json.load(f)
+#
+# all_eq_dicts = all_eq_data['features']
+#
+# mags = [] # Create an open list to store the information
+# for eq_dict in  all_eq_dicts: # loop through the all dictionaries under 'features'
+#     mag = eq_dict['properties']['mag'] # store all mag data into a variable
+#     mags.append(mag) # append the mag data into the empty list
+# print(mags[:10])
+
+
+
+# Part 4: Extracting the locations
 with open(filename) as f:
     all_eq_data = json.load(f)
 
 all_eq_dicts = all_eq_data['features']
 
-mags = [] # Create an open list to store the information
-for eq_dict in  all_eq_dicts: # loop through the all dictionaries under 'features'
-    mag = eq_dict['properties']['mag'] # store all mag data into a variable
-    mags.append(mag) # append the mag data into the empty list
-print(mags[:10])
+mags, lons, lats = [], [], []
+for eq_dict in all_eq_dicts:
+    mag = eq_dict['properties']['mag']
+    lon = eq_dict['geometry']['coordinates'][0]
+    lat = eq_dict['geometry']['coordinates'][1]
+    mags.append(mag)
+    lons.append(lon)
+    lats.append(lat)
 
+print(mags[:10])
+print(lons[:5])
+print(lats[:5])
