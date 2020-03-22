@@ -1,5 +1,8 @@
 import json
 
+from plotly.graph_objs import Scattergeo, Layout
+from plotly import offline
+
 # Explore the file
 filename = 'data/eq_1_day.json'
 
@@ -38,21 +41,46 @@ filename = 'data/eq_1_day.json'
 
 
 
-# Part 4: Extracting the locations
+# # Part 4: Extracting the locations
+# with open(filename) as f:
+#     all_eq_data = json.load(f)
+#
+# all_eq_dicts = all_eq_data['features']
+#
+# mags, lons, lats = [], [], []
+# for eq_dict in all_eq_dicts:
+#     mag = eq_dict['properties']['mag']
+#     lon = eq_dict['geometry']['coordinates'][0]
+#     lat = eq_dict['geometry']['coordinates'][1]
+#     mags.append(mag)
+#     lons.append(lon)
+#     lats.append(lat)
+#
+# print(mags[:10])
+# print(lons[:5])
+# print(lats[:5])
+
+
+
+# Part 5: World Map
 with open(filename) as f:
     all_eq_data = json.load(f)
 
 all_eq_dicts = all_eq_data['features']
 
 mags, lons, lats = [], [], []
-for eq_dict in all_eq_dicts:
-    mag = eq_dict['properties']['mag']
-    lon = eq_dict['geometry']['coordinates'][0]
-    lat = eq_dict['geometry']['coordinates'][1]
+for eq_dicts in all_eq_dicts:
+    mag = eq_dicts['properties']['mag']
+    lon = eq_dicts['geometry']['coordinates'][0]
+    lat = eq_dicts['geometry']['coordinates'][1]
     mags.append(mag)
     lons.append(lon)
     lats.append(lat)
 
-print(mags[:10])
-print(lons[:5])
-print(lats[:5])
+# Map the earthquakes
+data = [Scattergeo(lon=lons, lat=lats)] # The data we use in the visualization is called by Scattergeo object
+my_layout = Layout(title='Global Earthquakes') # This is where you can customize the layout
+
+fig = {'data': data, 'layout': my_layout} # we 'call' the entire layout by using the dictionary fig
+offline.plot(fig, filename='plots/global_earthquakes.html') # this is where we 'execute' the entire layout and plot the map
+
